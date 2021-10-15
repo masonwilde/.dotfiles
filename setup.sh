@@ -7,11 +7,11 @@ git submodule update
 # what directories should be installable by all users including the root user
 base=(
     bash
+    vim
 )
 
 # folders that should, or only need to be installed for a local user
 useronly=(
-    git
 )
 
 # run the stow command for the passed in directory ($2) in location $1
@@ -34,7 +34,7 @@ done
 
 # install only user space folders
 for app in ${useronly[@]}; do
-    if [[! "$(whoami)" = *"root"*]]; then
+    if [[ ! "$(whoami)" = *"root"* ]]; then
         stowit "${HOME}" $app
     fi
 done

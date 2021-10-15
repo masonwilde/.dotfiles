@@ -17,12 +17,6 @@ endif
 """""""""""""""""""""""""""
 " Plugins
 """""""""""""""""""""""""""
-call plug#begin('~/.vim/plugged')
-Plug 'vim-syntastic/syntastic'
-Plug 'joshdick/onedark.vim'
-Plug 'itchyny/lightline.vim'
-
-call plug#end()
 """""""""""""""""""""""""""
 
 " disable bells
@@ -76,7 +70,6 @@ set lazyredraw
 " Theme
 set background=dark
 set termguicolors
-colorscheme onedark
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
 
 set laststatus=2
@@ -201,6 +194,11 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 :nnoremap <C-p> :bnext<CR>
 :nnoremap <C-o> :bprevious<CR>
 
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
 " Map Control S for save
 noremap <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
@@ -222,6 +220,9 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
 so ~/.vim/plugins.vim
+call glaive#Install()
+
+colorscheme onedark
 
 " nerdtree mapping
 map <C-o> :NERDTreeToggle<CR>
