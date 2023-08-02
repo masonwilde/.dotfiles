@@ -46,8 +46,12 @@ set expandtab
 " Fix backspace behavior 
 set backspace=indent,eol,start
 
-" Use system clipboard 
-set clipboard+=unnamed
+" Use system clipboard
+if system('uname -s') == "Darwin\n"
+  set clipboard=unnamed "OSX
+else
+  set clipboard=unnamedplus "Linux
+endif 
 
 " Keep Undo history on buffer change
 set hidden

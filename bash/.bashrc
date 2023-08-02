@@ -1,8 +1,14 @@
-# Set CLICOLOR if you want Ansi Colors in iTerm2 
-export CLICOLOR=1
+#
+# .bashrc
+#
 
-# Set colors to match iTerm2 Terminal Colors
-export TERM=xterm-256color
+if uname -s == "Darwin\n" ; then
+    # Set CLICOLOR if you want Ansi Colors in iTerm2 
+    export CLICOLOR=1
+
+    # Set colors to match iTerm2 Terminal Colors
+    export TERM=xterm-256color
+fi
 
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
