@@ -2,7 +2,8 @@
 # .bashrc
 #
 
-if uname -s == "Darwin\n" ; then
+uname_var="$(uname -s)"
+if [[ uname_var =~ "Darwin\n" ]]; then
     # Set CLICOLOR if you want Ansi Colors in iTerm2 
     export CLICOLOR=1
 
@@ -15,5 +16,9 @@ parse_git_branch() {
 }
 export PS1="\u - \[\e[32m\]\W \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
 
-source ~/.git_completion.sh
+if [[ var =~ "Darwin\n" ]]; then
+    source ~/.git_completion.sh
+else
+    source /usr/share/git/completion/git-completion.bash
+fi
 export BASH_SILENCE_DEPRECATION_WARNING=1
