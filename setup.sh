@@ -14,6 +14,8 @@ base=(
 useronly=(
 )
 
+uname_var="$(uname -s)"
+
 # run the stow command for the passed in directory ($2) in location $1
 stowit() {
     usr=$1
@@ -38,6 +40,9 @@ for app in ${useronly[@]}; do
         stowit "${HOME}" $app
     fi
 done
+if [[ $uname_var =~ Darwin ]]; then
+    stowit "${HOME}" zsh
+fi
 
 echo ""
 echo "##### ALL DONE"

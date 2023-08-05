@@ -65,7 +65,7 @@ export PS1="\u - \[\e[32m\]\W \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
 
 uname_var="$(uname -s)"
 # If on MacOS
-if [[ uname_var =~ "Darwin\n" ]]; then
+if [[ $uname_var =~ Darwin ]]; then
     # Brew
     alias gimme='brew install'
     # Set CLICOLOR if you want Ansi Colors in iTerm2 
@@ -73,7 +73,7 @@ if [[ uname_var =~ "Darwin\n" ]]; then
     # Set colors to match iTerm2 Terminal Colors
     export TERM=xterm-256color
     # Git completion
-    source ~/.git_completion.sh
+    source ~/.git-completion.bash
 else # Probably on Linux...most likely Arch
     # Pacman
     alias gimme='sudo pacman -S'
