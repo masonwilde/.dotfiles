@@ -9,7 +9,6 @@ alias la='ls -d -a --color=auto'
 alias ..='cd ..'
 alias cd..='cd ..'
 # Git
-alias gitp='git pull origin main'
 alias gitc='git commit -m'
 alias gita='git commit --amend'
 alias gitfukt='git reset HEAD --hard'
@@ -74,11 +73,17 @@ if [[ $uname_var =~ Darwin ]]; then
     export TERM=xterm-256color
     # Git completion
     source ~/.git-completion.bash
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 else # Probably on Linux...most likely Arch
     # Pacman
     alias gimme='sudo pacman -S'
     # Git completion
     source /usr/share/git/completion/git-completion.bash
+fi
+# Mac Ruby Brew Install
+if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
+  export PATH=/opt/homebrew/opt/ruby/bin:$PATH
+  export PATH=`gem environment gemdir`/bin:$PATH
 fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
