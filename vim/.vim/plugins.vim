@@ -20,4 +20,5 @@ Plug 'google/vim-glaive'
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ervandew/supertab'
+Plug 'github/copilot.vim'
 call plug#end()
