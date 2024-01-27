@@ -19,4 +19,5 @@ Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'ervandew/supertab'
 call plug#end()
