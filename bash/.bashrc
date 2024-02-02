@@ -1,4 +1,3 @@
-#
 # .bashrc
 #
 # Generally Helpful Aliases
@@ -87,4 +86,3 @@ if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
 fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
-
