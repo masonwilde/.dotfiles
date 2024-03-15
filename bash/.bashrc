@@ -1,4 +1,3 @@
-#
 # .bashrc
 #
 source ~/.aliases
@@ -32,6 +31,5 @@ elif [[ $uname_var =~ "Linux" ]]; then # Probably on Linux...most likely Ubuntu
 fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
-
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
