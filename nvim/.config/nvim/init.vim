@@ -25,22 +25,14 @@ set ttyfast                 " Speed up scrolling in Vim
 
 call plug#begin("~/.vim/plugged")
 " Plugin Section
-Plug 'ryanoasis/vim-devicons'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
 Plug 'preservim/nerdcommenter'
-Plug 'mhinz/vim-startify'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'airblade/vim-gitgutter'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
@@ -50,9 +42,8 @@ Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'ervandew/supertab'
 Plug 'github/copilot.vim'
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " open file in a text by placing text and gf

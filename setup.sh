@@ -9,6 +9,7 @@ base=(
     bash
     vim
     nvim
+    tmux
 )
 
 # folders that should, or only need to be installed for a local user
@@ -32,6 +33,7 @@ echo "Stowing apps for user: ${whoami}"
 
 # install apps available to local users and root
 for app in ${base[@]}; do
+    echo "$app"
     stowit "${HOME}" $app
 done
 
