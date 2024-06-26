@@ -22,12 +22,12 @@ elif [[ $uname_var =~ "Arch" ]]; then # Probably on Linux...most likely Arch
     # Pacman
     alias gimme='sudo pacman -S'
     # Git completion
-    source /usr/share/git/completion/git-completion.bash
+    source /usr/share/bash-completion/completions/git
 elif [[ $uname_var =~ "Linux" ]]; then # Probably on Linux...most likely Ubuntu
     # Apt
     alias gimme='sudo apt install'
     # Git completion
-    source /usr/share/git/completion/git-completion.bash
+    source /usr/share/bash-completion/completions/git
 fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
