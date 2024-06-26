@@ -50,8 +50,3 @@ alias cpuinfo='lscpu'
 alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
 ## this one saved by butt so many times ##
 alias wget='wget -c'
-
-alias v='nvim'
-alias vim='nvim'
-
-alias cd='z'

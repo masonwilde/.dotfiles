@@ -20,12 +20,12 @@ if [[ $uname_var =~ Darwin ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [[ $uname_var =~ "Arch" ]]; then # Probably on Linux...most likely Arch
     # Pacman
-    alias gimme='sudo pacman -S'
+    alias gimme='pacman -S'
     # Git completion
     source /usr/share/bash-completion/completions/git
 elif [[ $uname_var =~ "Linux" ]]; then # Probably on Linux...most likely Ubuntu
     # Apt
-    alias gimme='sudo apt install'
+    alias gimme='apt install'
     # Git completion
     source /usr/share/bash-completion/completions/git
 fi
@@ -33,3 +33,5 @@ fi
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+set -o vi
