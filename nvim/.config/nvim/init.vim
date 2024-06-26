@@ -44,6 +44,7 @@ Plug 'google/vim-glaive'
 Plug 'junegunn/fzf.vim'
 Plug 'github/copilot.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 " open file in a text by placing text and gf
