@@ -4,7 +4,7 @@ source ~/.aliases
 source ~/.functions
 
 # Custom shell prompt
-export PS1="\u - \[\e[32m\]\W \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
+export PS1="\u@\h:\[\e[32m\]\W \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
 
 uname_var="$(uname -s)"
 # If on MacOS
@@ -37,3 +37,4 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 eval "$(zoxide init bash)"
 
 set -o vi
+. "$HOME/.cargo/env"
