@@ -1,3 +1,10 @@
+lua require("config.lazy")
+" lua require'lspconfig'.lua_ls.setup{}
+lua require'lspconfig'.pyright.setup{}
+lua require'lspconfig'.rls.setup{}
+
+lua require('Comment').setup()
+
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching 
 set ignorecase              " case insensitive 
@@ -22,30 +29,6 @@ set ttyfast                 " Speed up scrolling in Vim
 " set spell                 " enable spell check (may need to download language package)
 " set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
-
-call plug#begin("~/.vim/plugged")
-" Plugin Section
-Plug 'scrooloose/nerdtree'
-Plug 'preservim/nerdcommenter'
-Plug 'airblade/vim-gitgutter'
-Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
-Plug 'joshdick/onedark.vim'
-Plug 'vim-syntastic/syntastic'
-Plug 'google/vim-maktaba'
-Plug 'google/vim-codefmt'
-Plug 'google/vim-glaive'
-Plug 'junegunn/fzf.vim'
-Plug 'github/copilot.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-commentary'
-call plug#end()
 
 " open file in a text by placing text and gf
 nnoremap gf :vert winc f<cr>
