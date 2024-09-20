@@ -2,6 +2,8 @@ lua require("config.lazy")
 " lua require'lspconfig'.lua_ls.setup{}
 lua require'lspconfig'.pyright.setup{}
 lua require'lspconfig'.rls.setup{}
+lua require("mason").setup()
+
 
 lua require('Comment').setup()
 
