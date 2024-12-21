@@ -10,6 +10,7 @@ base=(
     vim
     nvim
     tmux
+    zsh
 )
 
 # folders that should, or only need to be installed for a local user
@@ -43,9 +44,6 @@ for app in ${useronly[@]}; do
         stowit "${HOME}" $app
     fi
 done
-if [[ $uname_var =~ Darwin ]]; then
-    stowit "${HOME}" zsh
-fi
 
 echo ""
 echo "##### ALL DONE"
