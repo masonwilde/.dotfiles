@@ -37,7 +37,6 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 eval "$(zoxide init bash)"
 
 set -o vi
-. "$HOME/.cargo/env"
 
 # pnpm
 export PNPM_HOME="/home/mason/.local/share/pnpm"
@@ -46,3 +45,11 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# Rust
+. "$HOME/.cargo/env"
+# Rust end
+
+# Go
+export PATH=$PATH:/usr/local/go/bin
+# Go end

@@ -20,22 +20,36 @@ plugins=(
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 
-# Go
-export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-
 # load zsh-completions
 autoload -U compinit && compinit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # pnpm
-export PNPM_HOME="/Users/masonwilde/Library/pnpm"
+export PNPM_HOME="/home/mason/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
 
+# Rust
+RUST_ENV="$HOME/.cargo/env"
+if [ -f $RUST_ENV ]; then
+	. "$RUST_ENV"
+else
+	echo "WARNING (Rust): Missing $RUST_ENV"
+fi
+# Rust end
+
+# Go
+GO_PATH="/usr/local/go/bin"
+if [ -d "$GO_PATH" ]; then
+	export PATH=$PATH:"$GO_PATH"
+else
+	echo "WARNING (Go): Missing $GO_PATH"
+fi
+# Go end
+
+bindkey -v
 eval "$(zoxide init zsh)"
