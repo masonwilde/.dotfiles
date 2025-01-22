@@ -19,18 +19,20 @@ esac
 
 # Rust
 RUST_ENV="$HOME/.cargo/env"
+RUST_ENV_ALT="/usr/bin/cargo"
 if [ -f $RUST_ENV ]; then
 	. "$RUST_ENV"
-else
+elif ! [ -f $RUST_CARGO ]; then
 	echo "WARNING (Rust): Missing $RUST_ENV"
 fi
 # Rust end
 
 # Go
 GO_PATH="/usr/local/go/bin"
+GO_BIN="/usr/bin/go"
 if [ -d "$GO_PATH" ]; then
 	export PATH=$PATH:"$GO_PATH"
-else
+elif ! [[ -f $GO_BIN ]]; then
 	echo "WARNING (Go): Missing $GO_PATH"
 fi
 # Go end
