@@ -13,6 +13,7 @@ return {
 					return require("codecompanion.adapters").extend("anthropic", {
 						env = {
 							api_key = dotenv.get("ANTHROPIC_API_KEY"),
+							model = "claude-3-7-sonnet-20250219",
 						},
 					})
 				end,
@@ -21,18 +22,6 @@ return {
 				chat = { adapter = "anthropic" },
 				inline = { adapter = "anthropic" },
 				agent = { adapter = "anthropic" },
-			},
-			display = {
-				action_palette = {
-					width = 95,
-					height = 10,
-					prompt = "Prompt ", -- Prompt used for interactive LLM calls
-					provider = "telescope", -- default|telescope|mini_pick
-					opts = {
-						show_default_actions = true, -- Show the default actions in the action palette?
-						show_default_prompt_library = true, -- Show the default prompt library in the action palette?
-					},
-				},
 			},
 		})
 		vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
