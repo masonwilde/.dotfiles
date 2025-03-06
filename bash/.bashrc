@@ -47,7 +47,6 @@ esac
 # pnpm end
 
 # Rust
-. "$HOME/.cargo/env"
 # Rust end
 
 # Go
