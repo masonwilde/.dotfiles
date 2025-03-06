@@ -6,8 +6,6 @@ local function map(mode, lhs, rhs)
 	vim.keymap.set(mode, lhs, rhs, { silent = true })
 end
 
-vim.g.mapleader = " "
-
 -- Exit insert mode
 map("i", "jk", "<ESC>")
 
