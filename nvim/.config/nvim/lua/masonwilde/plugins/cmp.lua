@@ -12,6 +12,7 @@ return {
 		},
 		"rafamadriz/friendly-snippets",
 		"onsails/lspkind.nvim", -- vs-code like pictograms
+		"neovim/nvim-lspconfig",
 	},
 	config = function()
 		local cmp = require("cmp")
