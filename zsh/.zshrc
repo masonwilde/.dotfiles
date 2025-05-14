@@ -18,6 +18,8 @@ antigen init ~/.antigenrc
 
 if [ -f ~/.workrc ]; then
 	source ~/.workrc
+else
+	eval "$(direnv hook zsh)"
 fi
 
 bindkey -v
