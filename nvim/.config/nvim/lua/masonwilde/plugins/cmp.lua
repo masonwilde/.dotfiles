@@ -16,6 +16,7 @@ return {
 	},
 	config = function()
 		local cmp = require("cmp")
+		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 		local lspkind = require("lspkind")
 		local luasnip = require("luasnip")
 
@@ -62,6 +63,9 @@ return {
 				{ name = "path" },
 			}),
 		})
+
+		-- Integration with autopairs.
+		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 		vim.cmd([[
       set completeopt=menuone,noinsert,noselect
