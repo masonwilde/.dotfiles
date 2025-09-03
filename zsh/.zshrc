@@ -25,5 +25,7 @@ eval "$(zoxide init zsh)"
 
 export PATH=~/.local/bin/:$PATH
 
+export COMPACT_LOGGING=true
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
