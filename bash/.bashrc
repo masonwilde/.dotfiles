@@ -1,5 +1,12 @@
 # .bashrc
 #
+
+# For Omarchy on WildeFramework13
+export OMARCHY_RC="~/.local/share/omarchy/default/bash/rc"
+if [ -f $OMARCHY_RC ]; then
+	source $OMARCHY_RC
+fi
+
 source ~/.aliases
 source ~/.functions
 
