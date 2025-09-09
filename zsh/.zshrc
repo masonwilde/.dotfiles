@@ -33,6 +33,7 @@ if [ -f $RUST_ENV ]; then
 	. "$RUST_ENV"
 elif ! [ -f $RUST_CARGO ]; then
 	echo "WARNING (Rust): Missing $RUST_ENV"
+fi
 
 if [ -f ~/.workrc ]; then
 	source ~/.workrc
