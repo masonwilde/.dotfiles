@@ -33,22 +33,17 @@ if [ -f $RUST_ENV ]; then
 	. "$RUST_ENV"
 elif ! [ -f $RUST_CARGO ]; then
 	echo "WARNING (Rust): Missing $RUST_ENV"
-fi
-# Rust end
 
-# Go
-GO_PATH="/usr/local/go/bin"
-GO_BIN="/usr/bin/go"
-if [ -d "$GO_PATH" ]; then
-	export PATH=$PATH:"$GO_PATH"
-elif ! [[ -f $GO_BIN ]]; then
-	echo "WARNING (Go): Missing $GO_PATH"
+if [ -f ~/.workrc ]; then
+	source ~/.workrc
+else
+	eval "$(direnv hook zsh)"
 fi
-# Go end
 
 bindkey -v
 eval "$(zoxide init zsh)"
-eval "$(direnv hook zsh)"
+
+export PATH=~/.local/bin/:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
