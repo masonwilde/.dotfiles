@@ -2,3 +2,25 @@
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
+
+venv() {
+    local dir_name=$(basename "$PWD")
+
+    # Check if .envrc already exists
+    if [ -f .envrc ]; then
+        echo "Error: .envrc already exists" >&2
+        return 1
+    fi
+
+    # Create venv using uv with all passed arguments
+    if ! uv venv; then
+        echo "Error: Failed to create venv" >&2
+        return 1
+    fi
+
+    # Create .envrc
+    echo "layout python" >> .envrc
+
+    # Allow direnv to immediately activate the virtual environment
+    direnv allow
+}
