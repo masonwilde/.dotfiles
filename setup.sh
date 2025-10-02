@@ -11,7 +11,10 @@ base=(
     nvim
     tmux
     zsh
-		claude
+    claude
+		kitty
+		waybar
+		hypr
 )
 
 # folders that should, or only need to be installed for a local user
