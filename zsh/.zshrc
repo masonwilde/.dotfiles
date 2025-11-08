@@ -12,6 +12,7 @@ if [ -f $OMARCHY_RC ]; then
 fi
 
 # Load Antigen
+export ZSH_CACHE_DIR="${HOME}/.antigen/bundles/robbyrussell/oh-my-zsh/cache"
 source ~/.antigen.zsh
 antigen init ~/.antigenrc
 
