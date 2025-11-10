@@ -13,6 +13,8 @@ alias gitfukt='git reset HEAD --hard'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+# Helix
+command -v hx >/dev/null 2>&1 || alias hx='helix'
 # Diff
 alias diff='colordiff'
 # handy short cuts #
