@@ -1,49 +1,49 @@
--- nvim/lua/masonwilde/plugins/lsp.lua
-
 return {
 	"mason-org/mason-lspconfig.nvim",
 	opts = {
 		ensure_installed = {
-			"clangd",
-			"cssls",
-			"eslint",
-			"html",
-			"jsonls",
-			"lua_ls",
-			"pyright",
-			"tailwindcss",
-			"ruff",
-		},
-		automatic_enable = {
-			exclude = { "lua_ls", "cssls", "ruff" }, -- Exclude servers you want to configure manually
+			"clangd",        -- C/C++
+			"rust_analyzer", -- Rust
+			"pyright",       -- Python
+			"ruff",          -- Python linter/formatter
+			"lua_ls",        -- Lua
+			"gopls",         -- Go
+			"ts_ls",         -- TypeScript/JavaScript
+			"eslint",        -- JavaScript/TypeScript linter
+			"html",          -- HTML
+			"cssls",         -- CSS
+			"jsonls",        -- JSON
+			"tailwindcss",   -- TailwindCSS
 		},
 	},
 	dependencies = {
-		"mason-org/mason.nvim",
+		{ "mason-org/mason.nvim", opts = {} },
 		"neovim/nvim-lspconfig",
 	},
-	config = function()
+	config = function(_, opts)
+		local mason_lspconfig = require("mason-lspconfig")
+		local lspconfig = require("lspconfig")
+
+		-- Setup with handlers inline
+		mason_lspconfig.setup(vim.tbl_extend("force", opts, {
+			handlers = {
+				function(server_name)
+					lspconfig[server_name].setup({})
+				end,
+			},
+		}))
+
 		-- Diagnostic keymaps
 		vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
 		vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 
-		-- LSP keymaps and auto-format
+		-- LSP keymaps on attach
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
 				vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-				local client = vim.lsp.get_client_by_id(ev.data.client_id)
-				if client and client.server_capabilities.documentFormattingProvider then
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						group = vim.api.nvim_create_augroup("Format_" .. ev.buf, { clear = true }),
-						buffer = ev.buf,
-						callback = function()
-							vim.lsp.buf.format({ async = false })
-						end,
-					})
-				end
-
+				-- Buffer-local keymaps
 				local opts = { buffer = ev.buf }
 				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -59,9 +59,6 @@ return {
 				vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
 				vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
 				vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-				vim.keymap.set("n", "<space>f", function()
-					vim.lsp.buf.format({ async = true })
-				end, opts)
 			end,
 		})
 	end,
