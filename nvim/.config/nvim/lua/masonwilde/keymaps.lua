@@ -6,9 +6,6 @@ local function map(mode, lhs, rhs)
 	vim.keymap.set(mode, lhs, rhs, { silent = true })
 end
 
--- Exit insert mode
-map("i", "jk", "<ESC>")
-
 -- NeoTree
 map("n", "<leader>t", "<CMD>Neotree toggle<CR>")
 map("n", "<leader>r", "<CMD>Neotree focus<CR>")

@@ -1,5 +1,6 @@
 -- nvim/init.lua
 
-require("masonwilde.keymaps")
-require("masonwilde.settings")
-require("masonwilde.lazy")
+require('config')
+-- require("masonwilde.keymaps")
+-- require("masonwilde.settings")
+-- require("masonwilde.lazy")
