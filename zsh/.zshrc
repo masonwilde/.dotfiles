@@ -38,6 +38,7 @@ fi
 
 if [ -f ~/.workrc ]; then
 	source ~/.workrc
+	export PATH="/opt/homebrew/bin:$PATH"
 else
 	eval "$(direnv hook zsh)"
 	export PATH="~/.pyenv/bin:$PATH"
@@ -52,3 +53,20 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+_wt_branches() {
+  local -a branches
+  branches=(${(f)"$(git for-each-ref --format='%(refname:short)' refs/heads/ 2>/dev/null)"})
+  (( ${#branches} )) && _describe -t branches 'branch' branches
+}
+
+# Route _default to branch completion only inside `wt switch`
+_default() {
+  if [[ $curcontext == *:wt-command-switch:* ]]; then
+    _wt_branches
+  else
+    _files
+  fi
+}

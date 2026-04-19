@@ -24,3 +24,24 @@ venv() {
     # Allow direnv to immediately activate the virtual environment
     direnv allow
 }
+
+git-pr() {
+    if [ -z "$1" ]; then
+        echo "Usage: git-pr <PR_NUMBER>"
+        return 1
+    fi
+
+    # Fetch the PR branch
+    git fetch origin pull/$1/head:pr/$1
+
+    # Get the base branch using GitHub CLI (if available)
+    if command -v gh &> /dev/null; then
+        base_branch=$(gh pr view $1 --json baseRefName -q .baseRefName 2>/dev/null)
+        if [ -n "$base_branch" ]; then
+            echo "Base branch: $base_branch"
+            git fetch origin "$base_branch:$base_branch"
+        fi
+    fi
+
+    git checkout pr/$1
+}
