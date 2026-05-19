@@ -32,7 +32,7 @@ RUST_ENV="$HOME/.cargo/env"
 RUST_ENV_ALT="/usr/bin/cargo"
 if [ -f $RUST_ENV ]; then
 	. "$RUST_ENV"
-elif ! [ -f $RUST_CARGO ]; then
+elif ! [ -f $RUST_ENV_ALT ]; then
 	echo "WARNING (Rust): Missing $RUST_ENV"
 fi
 
