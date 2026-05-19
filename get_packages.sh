@@ -37,5 +37,17 @@ packages=(
     helix
 )
 
+available=()
+for pkg in "${packages[@]}"; do
+    if command -v pacman &>/dev/null; then
+        pacman -Si "$pkg" &>/dev/null || { echo "WARNING: $pkg not available, skipping"; continue; }
+    elif command -v apt &>/dev/null; then
+        apt-cache show "$pkg" &>/dev/null || { echo "WARNING: $pkg not available, skipping"; continue; }
+    elif command -v brew &>/dev/null; then
+        brew info "$pkg" &>/dev/null || { echo "WARNING: $pkg not available, skipping"; continue; }
+    fi
+    available+=("$pkg")
+done
+
 echo "==> Installing packages..."
-$package_install "${packages[@]}"
+$package_install "${available[@]}"
