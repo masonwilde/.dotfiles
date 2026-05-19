@@ -26,10 +26,18 @@ uname_var="$(uname -s)"
 stowit() {
     usr=$1
     app=$2
-    # -v verbose
-    # -R recursive
-    # -t target
-    stow -v -R -t ${usr} ${app}
+
+    # Dry run to find conflicts, back them up
+    conflicts=$(stow -n -v -R -t "${usr}" "${app}" 2>&1 | grep "existing target" | sed 's/.*existing target //' | sed 's/ since.*//')
+    for file in $conflicts; do
+        target="${usr}/${file}"
+        if [ -e "$target" ] && [ ! -L "$target" ]; then
+            echo "Backing up $target -> ${target}.bak"
+            mv "$target" "${target}.bak"
+        fi
+    done
+
+    stow -v -R -t "${usr}" "${app}"
 }
 
 echo ""
