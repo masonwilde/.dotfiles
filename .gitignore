@@ -2,3 +2,7 @@ lazy-lock.json
 .env
 .workrc
 /.claude
+claude/.claude/*
+!claude/.claude/CLAUDE.md
+!claude/.claude/settings.json
+!claude/.claude/agents/
