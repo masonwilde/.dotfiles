@@ -11,6 +11,7 @@ base=(
     nvim
     tmux
     zsh
+    p10k
     claude
     opencode
     helix
