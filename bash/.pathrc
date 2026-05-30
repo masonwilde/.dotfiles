@@ -1,0 +1,36 @@
+# Rust
+RUST_ENV="$HOME/.cargo/env"
+if [ -f "$RUST_ENV" ]; then
+	. "$RUST_ENV"
+fi
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Go
+export PATH="$PATH:/usr/local/go/bin"
+
+# Python
+export PATH="$HOME/.pyenv/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Neovim
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+# OpenCode
+export PATH="$HOME/.opencode/bin:$PATH"
+
+# Homebrew (macOS)
+if [ -f "$HOME/.workrc" ]; then
+	export PATH="/opt/homebrew/bin:$PATH"
+fi
+
+export PATH="$HOME/.local/bin:$PATH"

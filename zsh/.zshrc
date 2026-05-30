@@ -5,56 +5,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# For Omarchy on WildeFramework13
-OMARCHY_RC="~/.local/share/omarchy/default/bash/rc"
-if [ -f $OMARCHY_RC ]; then
-	source $OMARCHY_RC
-fi
-
 # Load Antigen
 export ZSH_CACHE_DIR="${HOME}/.antigen/bundles/robbyrussell/oh-my-zsh/cache"
 source ~/.antigen.zsh
 antigen init ~/.antigenrc
 
-source "$HOME/.aliases"
-source "$HOME/.functions"
-
-# pnpm
-export PNPM_HOME="/home/mason/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME/bin:"*) ;;
-  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-esac
-# pnpm end
-
-# Rust
-RUST_ENV="$HOME/.cargo/env"
-RUST_ENV_ALT="/usr/bin/cargo"
-if [ -f $RUST_ENV ]; then
-	. "$RUST_ENV"
-elif ! [ -f $RUST_ENV_ALT ]; then
-	echo "WARNING (Rust): Missing $RUST_ENV"
-fi
-
-if [ -f ~/.workrc ]; then
-	source ~/.workrc
-	export PATH="/opt/homebrew/bin:$PATH"
-else
-	eval "$(direnv hook zsh)"
-	export PATH="~/.pyenv/bin:$PATH"
-	eval "$(pyenv init -)"
-fi
-
-bindkey -v
-eval "$(zoxide init zsh)"
-
-export PATH=~/.local/bin/:$PATH
-export PATH="$HOME/.cargo/bin:$PATH"
+source "$HOME/.sharedrc"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
 
 _wt_branches() {
   local -a branches
@@ -71,11 +30,5 @@ _default() {
   fi
 }
 
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-
-# opencode
-export PATH=/home/mason/.opencode/bin:$PATH
-
-# >>> Codex installer >>>
-export PATH="/home/mason/.local/bin:$PATH"
-# <<< Codex installer <<<
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
