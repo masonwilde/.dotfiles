@@ -35,6 +35,7 @@ packages=(
     tmux
     neovim
     helix
+    unzip
 )
 
 available=()

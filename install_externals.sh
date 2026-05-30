@@ -2,6 +2,9 @@
 
 set -e
 
+echo "==> Installing Bun..."
+curl -fsSL https://bun.com/install | bash
+
 echo "==> Installing Claude Code..."
 curl -fsSL https://claude.ai/install.sh | bash
 
