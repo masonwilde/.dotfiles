@@ -12,6 +12,7 @@ base=(
     tmux
     zsh
     claude
+    opencode
     helix
     alacritty
 )

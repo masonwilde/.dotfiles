@@ -1,0 +1,27 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": true,
+  "provider": {
+    "wildelab": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Wildelab",
+      "options": {
+        "baseURL": "https://llama.wildelab.com/v1"
+      },
+      "models": {
+        "Qwen3.6-35B-A3B-UD-Q4_K_M.gguf": {
+          "name": "Qwen 3.6 35B",
+          "contextWindow": 131072
+        }
+      }
+    },
+    "wildelab2": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Wildelab 2",
+      "options": {
+        "baseURL": "https://llama2.wildelab.com/v1"
+      },
+      "models": {}
+    }
+  }
+}
