@@ -22,8 +22,8 @@ source "$HOME/.functions"
 # pnpm
 export PNPM_HOME="/home/mason/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
 
@@ -70,3 +70,12 @@ _default() {
     _files
   fi
 }
+
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+# opencode
+export PATH=/home/mason/.opencode/bin:$PATH
+
+# >>> Codex installer >>>
+export PATH="/home/mason/.local/bin:$PATH"
+# <<< Codex installer <<<
