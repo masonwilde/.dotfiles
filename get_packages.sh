@@ -36,6 +36,7 @@ packages=(
     neovim
     helix
     unzip
+    gitleaks
 )
 
 available=()

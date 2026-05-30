@@ -10,4 +10,7 @@ echo "==> Installing packages..."
 echo "==> Stowing dotfiles..."
 "$DOTFILES_DIR/setup.sh"
 
+echo "==> Configuring git hooks..."
+git config core.hooksPath "$DOTFILES_DIR/hooks"
+
 echo "==> Done! Restart your shell to pick up changes."
