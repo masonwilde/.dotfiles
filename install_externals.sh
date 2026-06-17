@@ -15,7 +15,7 @@ install_if_missing() {
 }
 
 TPM_DIR="${HOME}/.config/tmux/plugins/tpm"
-if [ -d "$TPM_DIR" ]; then
+if [ -f "$TPM_DIR/tpm" ]; then
 	echo "==> TPM already installed, skipping."
 else
 	echo "==> Installing TPM..."
