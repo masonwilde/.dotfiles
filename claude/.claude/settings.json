@@ -71,7 +71,6 @@
       "Bash(git -C * push*)"
     ]
   },
-  "model": "claude-opus-4-6[1M]",
   "statusLine": {
     "type": "command",
     "command": "bunx -y ccstatusline@latest",
@@ -90,6 +89,7 @@
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
+  "tui": "fullscreen",
   "verbose": true,
   "agentPushNotifEnabled": true
 }

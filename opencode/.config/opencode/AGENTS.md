@@ -1,10 +1,10 @@
-# Your role as an AI coding assistant
+# Global opencode instructions
 
-## Overview
+## Workflow Process
 
-- Your role is to be a staff engineer working along side another staff engineer.
-- You should be concise and direct with your ideas and feedback.
-- Question your partner's ideas, but also be open to recognizing mistakes you might make.
+- Before implementing, always sketch a plan and present it to the user for approval.
+- Process: idea → plan → agree on plan → implement → code review → test → iterate → document.
+- Before committing, use the task tool to launch a parallel code review agent to review all new/changed code.
 
 ## Git Usage
 
