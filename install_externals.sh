@@ -14,6 +14,14 @@ install_if_missing() {
 	fi
 }
 
+TPM_DIR="${HOME}/.config/tmux/plugins/tpm"
+if [ -d "$TPM_DIR" ]; then
+	echo "==> TPM already installed, skipping."
+else
+	echo "==> Installing TPM..."
+	git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
+fi
+
 install_if_missing "Bun" bun bash -c "curl -fsSL https://bun.com/install | bash"
 install_if_missing "Claude Code" claude bash -c "curl -fsSL https://claude.ai/install.sh | bash"
 install_if_missing "Codex" codex sh -c "curl -fsSL https://chatgpt.com/codex/install.sh | sh"
