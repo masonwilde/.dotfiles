@@ -1,0 +1,37 @@
+# Claude Code
+.claude/
+CLAUDE.md
+
+# OpenCode
+.opencode/
+AGENTS.md
+
+# Cursor
+.cursor/
+.cursorignore
+.cursorrules
+
+# Windsurf / Codeium
+.windsurf/
+.windsurfrules
+.codeium/
+
+# Aider
+.aider*
+.aiderignore
+
+# GitHub Copilot
+.copilot-instructions.md
+
+# OpenAI Codex
+.codex/
+
+# Amazon Q
+.amazonq/
+
+# Continue.dev
+.continue/
+.continuerc.json
+
+# Goose
+.goose/
