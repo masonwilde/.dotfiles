@@ -12,6 +12,7 @@
 - When planning or implementing, always make commits at logical steps
 - Make ALL commits as a single descriptive line followed by a list of changes in the commit.
   - Keep it concise: a short subject line and a few terse bullets covering only what adds information. Do not pad.
+  - Do NOT enumerate tests in the commit body; passing tests are assumed.
   - DO NOT append anything else like clause authorship to the commit.
 - DO NOT push work. Anything modifying the remote will be done manually by your partner.
 - Before EVERY commit, kick off two reviewer subagents (in parallel) and address their findings first.
