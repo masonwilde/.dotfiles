@@ -91,5 +91,6 @@
   "effortLevel": "high",
   "tui": "fullscreen",
   "verbose": true,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "model": "claude-fable-5[1m]"
 }
