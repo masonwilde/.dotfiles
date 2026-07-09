@@ -12,6 +12,7 @@ base=(
     tmux
     zsh
     p10k
+    git
     claude
     opencode
     helix
