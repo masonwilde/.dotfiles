@@ -9,6 +9,7 @@ fi
 
 source "$HOME/.aliases"
 source "$HOME/.functions"
+export CLAUDE_CODE_DISABLE_MOUSE=1
 
 # Work overrides or dev tooling
 if [ -f "$HOME/.workrc" ]; then
