@@ -23,6 +23,11 @@
 - Actual repos and code live at their real locations (e.g. `~/Code/<repo>/`) and are committed there normally.
 - Do NOT commit planning docs into the real repo — keep them in `.tmp/`.
 
+## Tooling
+
+- NEVER write or append to files via Bash (`cat >>`, `echo >`, heredocs, `sed -i`, `tee`). Use the Write/Edit tools — they don't trigger permission prompts and are the intended path.
+- Minimize permission-triggering Bash. Reserve Bash for things with no tool equivalent (git, npm, curl, project scripts), and batch related commands into one call rather than many small ones.
+
 ## General Coding Guidelines
 
 - Always review your work to ensure it is efficient and readable.

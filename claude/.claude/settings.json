@@ -64,13 +64,15 @@
       "Bash(git config*)",
       "Bash(git -C * config*)",
       "Bash(git remote*)",
-      "Bash(git -C * remote*)"
+      "Bash(git -C * remote*)",
+      "Bash(/home/mason/.claude/plugins/cache/claude-plugins-official/superpowers/*)"
     ],
     "deny": [
       "Bash(git push*)",
       "Bash(git -C * push*)"
     ]
   },
+  "model": "haiku",
   "statusLine": {
     "type": "command",
     "command": "bunx -y ccstatusline@latest",
@@ -91,6 +93,5 @@
   "effortLevel": "high",
   "tui": "fullscreen",
   "verbose": true,
-  "agentPushNotifEnabled": true,
-  "model": "claude-fable-5[1m]"
+  "agentPushNotifEnabled": true
 }
