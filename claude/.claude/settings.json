@@ -106,7 +106,12 @@
       "Bash(basename *)",
       "Bash(dirname *)",
       "Bash(md5sum *)",
-      "Bash(sha256sum *)"
+      "Bash(sha256sum *)",
+      "Bash(uv run pytest)",
+      "Bash(uv run pytest *)",
+      "Bash(cmake --build *)",
+      "Bash(ctest --test-dir *)",
+      "Bash(make pi-smoke)"
     ],
     "deny": [
       "Bash(git push*)",
