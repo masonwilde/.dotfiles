@@ -1,232 +1,251 @@
-""Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-
-"""""""""""""""""""""""""""
-" Plugins
-"""""""""""""""""""""""""""
-"""""""""""""""""""""""""""
-
-" disable bells
-autocmd! GUIEnter * set vb t_vb=
-
-" Do not make vim compatible with vi.
-set nocompatible
-
-" Do not create .swp files
-set noswapfile
-
-" Number the lines.
-set number
-
-" Show auto complete menus.
-set wildmenu
-
-" Make wildmenu behave like bash completion. Finding commands are so easy now.
-set wildmode=list:longest
-
-" Enable mouse pointing
-set mouse=a
-
-" ALWAYS spaces
-set expandtab
-
-" Fix backspace behavior 
-set backspace=indent,eol,start
-
-" Use system clipboard
-if system('uname -s') == "Darwin\n"
-  set clipboard=unnamed "OSX
-else
-  set clipboard=unnamedplus "Linux
-endif 
-
-" Keep Undo history on buffer change
-set hidden
-
-" Reload files after change on Disk
-"set autoread
-"au CursorHold * checktime
-
-" Turn on syntax hightlighting.
-set syntax=on
-set nowrap
-set tabstop=2
-set shiftwidth=2
-set nocindent
-
-" Speed optimization
-set ttyfast
-set lazyredraw
-
-" Theme
-set background=dark
-set termguicolors
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h14
-
-set laststatus=2
-let g:lightline = {
-  \ 'colorscheme': 'onedark',
-  \ }
-
-" Indent Guides
-let g:indentLine_enabled=1
-let g:indentLine_color_term=235
-let g:indentLine_char='┆'
-
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
-
-" Start Minimap
-" autocmd VimEnter * Minimap
-
-" Delete buffer while keeping window layout (don't close buffer's windows).
-" Version 2008-11-18 from http://vim.wikia.com/wiki/VimTip165
-if v:version < 700 || exists('loaded_bclose') || &cp
-finish
-endif
-let loaded_bclose = 1
-if !exists('bclose_multiple')
-let bclose_multiple = 1
-endif
-
-" Display an error message.
-function! s:Warn(msg)
-  echohl ErrorMsg
-  echomsg a:msg
-  echohl NONE
-endfunction
-
-" Close buffer properly with NERDtree
-" http://stackoverflow.com/questions/1864394/vim-and-nerd-tree-closing-a-buffer-properly
+" ~/.vimrc — pure Vim, no plugins.
 "
-" Command ':Bclose' executes ':bd' to delete buffer in current window.
-" The window will show the alternate buffer (Ctrl-^) if it exists,
-" or the previous buffer (:bp), or a blank buffer if no previous.
-" Command ':Bclose!' is the same, but executes ':bd!' (discard changes).
-" An optional argument can specify which buffer to close (name or number).
-function! s:Bclose(bang, buffer)
-if empty(a:buffer)
-let btarget = bufnr('%')
-elseif a:buffer =~ '^\d\+$'
-let btarget = bufnr(str2nr(a:buffer))
-else
-let btarget = bufnr(a:buffer)
-endif
-if btarget < 0
-call s:Warn('No matching buffer for '.a:buffer)
-return
-endif
-if empty(a:bang) && getbufvar(btarget, '&modified')
-call s:Warn('No write since last change for buffer '.btarget.' (use :Bclose!)')
-return
-endif
-" Numbers of windows that view target buffer which we will delete.
-let wnums = filter(range(1, winnr('$')), 'winbufnr(v:val) == btarget')
-if !g:bclose_multiple && len(wnums) > 1
-call s:Warn('Buffer is in multiple windows (use ":let bclose_multiple=1")')
-return
-endif
-let wcurrent = winnr()
-for w in wnums
-execute w.'wincmd w'
-let prevbuf = bufnr('#')
-if prevbuf > 0 && buflisted(prevbuf) && prevbuf != w
-buffer #
-else
-bprevious
-endif
-if btarget == bufnr('%')
-" Numbers of listed buffers which are not the target to be deleted.
-let blisted = filter(range(1, bufnr('$')), 'buflisted(v:val) && v:val !=
-btarget')
-" Listed, not target, and not displayed.
-let bhidden = filter(copy(blisted), 'bufwinnr(v:val) < 0')
-" Take the first buffer, if any (could be more intelligent).
-let bjump = (bhidden + blisted + [-1])[0]
-if bjump > 0
-execute 'buffer '.bjump
-else
-execute 'enew'.a:bang
-endif
-endif
-endfor
-execute 'bdelete'.a:bang.' '.btarget
-execute wcurrent.'wincmd w'
-endfunction
-command! -bang -complete=buffer -nargs=? Bclose call <SID>Bclose('<bang>','<args>')
-nnoremap <silent> <Leader>bd :Bclose<CR>
-nnoremap <silent> <Leader>bD :Bclose!<CR>
+" Section 1 mirrors ~/.config/nvim (lua/config/{options,keymaps,autocmds}.lua)
+" as closely as Vim allows. Section 2 is Vim-only ergonomics with no Neovim
+" counterpart. Section 3 reimplements, in Vimscript, the handful of plugin
+" behaviours worth keeping (comments, file finding, statusline, file tree).
 
-" Chain vimgrep and copen
-augroup qf
-    autocmd!
-    autocmd QuickFixCmdPost [^l]* cwindow
-    autocmd QuickFixCmdPost l*    cwindow
-    autocmd VimEnter        *     cwindow
+set nocompatible
+filetype plugin indent on
+syntax enable
+
+" ===========================================================================
+" 1. Mirrors nvim
+" ===========================================================================
+
+set number
+set relativenumber
+set cursorline
+set ruler
+set title
+set showcmd
+set showmatch
+set wildmenu
+set hidden
+set autoindent
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set encoding=UTF-8
+set mouse=
+set ttimeoutlen=0
+set splitright
+set splitbelow
+set ignorecase
+set smartcase
+set gdefault
+set scrolloff=8
+set sidescrolloff=8
+
+" `lead` in 'listchars' needs 8.2.5066; degrade to tab/trail on older Vim.
+if has('patch-8.2.5066')
+  set listchars=tab:▸\ ,lead:·,trail:·
+else
+  set listchars=tab:▸\ ,trail:·
+endif
+set list
+
+if has('unnamedplus')
+  set clipboard=unnamedplus
+else
+  set clipboard=unnamed
+endif
+
+" True colour, including inside tmux/screen where Vim needs the sequences spelt out.
+if has('termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+set background=dark
+" onedark is a plugin; fall back through the closest bundled schemes.
+for s:scheme in ['catppuccin', 'habamax', 'desert']
+  try
+    execute 'colorscheme' s:scheme
+    break
+  catch /^Vim\%((\a\+)\)\=:E185:/
+  endtry
+endfor
+
+let mapleader = ' '
+
+" Netrw stands in for Neo-tree.
+nnoremap <silent> <leader>t :Lexplore<CR>
+nnoremap <silent> <leader>r :Lexplore %:p:h<CR>
+
+nnoremap <silent> <leader>o :vsplit<CR>
+nnoremap <silent> <leader>p :split<CR>
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+
+nnoremap <C-Left>  <C-w><
+nnoremap <C-Right> <C-w>>
+nnoremap <C-Up>    <C-w>+
+nnoremap <C-Down>  <C-w>-
+
+augroup vimrc_nvim_autocmds
+  autocmd!
+  " Stop auto-continuing comments on a new line.
+  autocmd FileType * setlocal formatoptions-=r formatoptions-=o
+  " Restore the cursor to its last position on file open.
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line('$') | execute "normal! g'\"" | endif
 augroup END
 
-" Change cursor appearance depending on the current mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" ===========================================================================
+" 2. Vim-only ergonomics
+" ===========================================================================
 
-""""""""""""""""""""""""""
-" Custom bindings
-""""""""""""""""""""""""""
+set noswapfile
+set nowrap
+set backspace=indent,eol,start
+set wildmode=list:longest
+set ttyfast
+set lazyredraw
+set belloff=all
 
-" Browse airline tabs
-:nnoremap <C-p> :bnext<CR>
-:nnoremap <C-o> :bprevious<CR>
+" Block cursor in normal mode, bar in insert, underline in replace.
+if !has('gui_running')
+  let &t_SI = "\<Esc>[6 q"
+  let &t_SR = "\<Esc>[4 q"
+  let &t_EI = "\<Esc>[2 q"
+endif
 
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <C-p> :bnext<CR>
+nnoremap <C-o> :bprevious<CR>
 
-" Map Control S for save
-noremap <silent> <C-S> :update<CR>
-vnoremap <silent> <C-S> <C-C>:update<CR>
-inoremap <silent> <C-S>  <C-O>:update<CR>
+" Ctrl-S saves from any mode.
+nnoremap <silent> <C-s> :update<CR>
+vnoremap <silent> <C-s> <C-c>:update<CR>
+inoremap <silent> <C-s> <C-o>:update<CR>
 
-" Comment block
-vnoremap <silent> <C-k> :Commentary<cr>
+nnoremap <silent> <C-q> :bdelete<CR>
+nnoremap <C-a> ggVG
 
-" Close current buffer
-noremap <silent> <C-q> :Bclose!<CR>
-
-" Toggle Nerdtree
-noremap <silent> <C-f> ::NERDTreeToggle<CR>
-
-" Select all
-map <C-a> <esc>ggVG<CR>
-
+" Trailing whitespace, louder than the listchars marker.
+augroup vimrc_extra_whitespace
+  autocmd!
+  autocmd ColorScheme  * highlight ExtraWhitespace ctermbg=red guibg=red
+  autocmd BufWinEnter  * match ExtraWhitespace /\s\+$/
+  autocmd InsertEnter  * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertLeave  * match ExtraWhitespace /\s\+$/
+augroup END
 highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
 
-so ~/.vim/plugins.vim
-call glaive#Install()
+" Open the quickfix/location window after anything populates it.
+augroup vimrc_quickfix
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost l*    lwindow
+augroup END
 
-colorscheme onedark
+" ===========================================================================
+" 3. Plugin behaviours, reimplemented
+" ===========================================================================
 
-" nerdtree mapping
-map <C-o> :NERDTreeToggle<CR>
+" --- Neo-tree -> netrw ---
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+let g:netrw_altv = 1
+
+" --- fzf-lua -> :find / :grep / :ls / :help ---
+set path=.,,**
+set wildignore+=*/node_modules/*,*/.git/*,*/dist/*,*/build/*,*/target/*,*/vendor/*
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --smart-case
+  set grepformat=%f:%l:%c:%m
+endif
+
+nnoremap <leader>ff :find<Space>
+nnoremap <leader>fg :grep!<Space>
+nnoremap <leader>fb :ls<CR>:buffer<Space>
+nnoremap <leader>fh :help<Space>
+
+" --- Comment.nvim -> 'commentstring'-driven toggle ---
+
+" Comment or uncomment [line1, line2], skipping blank lines. Uncomments only
+" when every non-blank line is already commented, matching Comment.nvim.
+function! s:CommentToggle(line1, line2) abort
+  if &commentstring !~# '%s'
+    return
+  endif
+  let l:lead = substitute(matchstr(&commentstring, '^.\{-}\ze%s'), '\s\+$', '', '')
+  let l:tail = substitute(matchstr(&commentstring, '%s\zs.*$'), '^\s\+', '', '')
+  let l:lines = filter(range(a:line1, a:line2), 'getline(v:val) =~# "\\S"')
+  if empty(l:lines)
+    return
+  endif
+
+  let l:pat = '^\s*' . escape(l:lead, '\.*$^~[]')
+  let l:commented = 1
+  for l:lnum in l:lines
+    if getline(l:lnum) !~# l:pat
+      let l:commented = 0
+      break
+    endif
+  endfor
+
+  let l:indent = min(map(copy(l:lines), 'match(getline(v:val), "\\S")'))
+  for l:lnum in l:lines
+    let l:text = getline(l:lnum)
+    if l:commented
+      let l:text = substitute(l:text, l:pat . '\s\?', repeat(' ', l:indent), '')
+      if !empty(l:tail)
+        let l:text = substitute(l:text, '\s\?' . escape(l:tail, '\.*$^~[]') . '\s*$', '', '')
+      endif
+    else
+      let l:text = strpart(l:text, 0, l:indent) . l:lead . ' ' . strpart(l:text, l:indent)
+      if !empty(l:tail)
+        let l:text .= ' ' . l:tail
+      endif
+    endif
+    call setline(l:lnum, l:text)
+  endfor
+endfunction
+
+command! -range CommentToggle call <SID>CommentToggle(<line1>, <line2>)
+nnoremap <silent> gcc :CommentToggle<CR>
+xnoremap <silent> gc  :CommentToggle<CR>
+
+" --- lualine -> 'statusline' ---
+let s:modes = {
+      \ 'n': 'NORMAL', 'i': 'INSERT', 'R': 'REPLACE', 'v': 'VISUAL',
+      \ 'V': 'V-LINE', "\<C-v>": 'V-BLOCK', 'c': 'COMMAND', 's': 'SELECT',
+      \ 'S': 'S-LINE', "\<C-s>": 'S-BLOCK', 't': 'TERMINAL',
+      \ }
+
+function! StatuslineMode() abort
+  return get(s:modes, mode(), mode())
+endfunction
+
+" Cached per buffer; recomputed on enter/write rather than on every redraw.
+function! s:UpdateGitBranch() abort
+  let b:git_branch = ''
+  if !executable('git') || empty(expand('%:p'))
+    return
+  endif
+  let l:out = systemlist('git -C ' . shellescape(expand('%:p:h')) . ' rev-parse --abbrev-ref HEAD')
+  if v:shell_error == 0 && !empty(l:out)
+    let b:git_branch = l:out[0]
+  endif
+endfunction
+
+function! StatuslineBranch() abort
+  let l:branch = get(b:, 'git_branch', '')
+  return empty(l:branch) ? '' : ' ⎇ ' . l:branch . ' │'
+endfunction
+
+augroup vimrc_git_branch
+  autocmd!
+  autocmd BufEnter,BufWritePost * call s:UpdateGitBranch()
+augroup END
+
+set laststatus=2
+set noshowmode
+let &statusline = ' %{StatuslineMode()} │%{StatuslineBranch()} %f %m%r%h%w%='
+      \ . '%{&fileencoding !=# "" ? &fileencoding : &encoding} │ %{&fileformat} │ '
+      \ . '%{&filetype !=# "" ? &filetype : "none"} │ %p%% │ %l:%c '
