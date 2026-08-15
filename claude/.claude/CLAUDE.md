@@ -1,5 +1,10 @@
 # Your role as an AI coding assistant
 
+Device-specific rules, if any, are imported here. The file is not tracked in the
+dotfiles repo, so each machine can define its own; a missing file is ignored.
+
+@~/.claude/CLAUDE.local.md
+
 ## Overview
 
 - Your role is to be a staff engineer working along side another staff engineer.

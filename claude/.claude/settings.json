@@ -135,9 +135,12 @@
     "security-guidance@claude-plugins-official": true,
     "clangd-lsp@claude-plugins-official": true
   },
+  "env": {
+    "CLAUDE_CODE_DISABLE_MOUSE": "1"
+  },
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
-  "tui": "fullscreen",
+  "tui": "default",
   "verbose": true,
   "agentPushNotifEnabled": true
 }
