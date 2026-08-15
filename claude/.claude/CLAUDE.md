@@ -14,11 +14,14 @@
   - Do NOT enumerate tests in the commit body; passing tests are assumed.
   - DO NOT append anything else like Claude authorship to the commit.
 - DO NOT push work. Anything modifying the remote will be done manually by your partner.
-- Before EVERY commit, kick off three reviewer subagents in parallel and address their findings first:
-  1. **Generalist staff engineer** — correctness, efficiency, and architecture.
-  2. **Domain expert** — in the language, framework, protocol, or problem domain of the change.
-  3. **Quality expert** — readability, comment quality, naming, and code cleanliness.
-   Pick reviewer models via the Subagents ladder: sonnet for routine diffs, opus for complex ones.
+- Scale pre-commit review to the change:
+  - **Code changes** (application/library source, tests, build logic) — before EVERY commit, kick off three reviewer subagents in parallel and address their findings first:
+    1. **Generalist staff engineer** — correctness, efficiency, and architecture.
+    2. **Domain expert** — in the language, framework, protocol, or problem domain of the change.
+    3. **Quality expert** — readability, comment quality, naming, and code cleanliness.
+     Pick reviewer models via the Subagents ladder: sonnet for routine diffs, opus for complex ones.
+  - **Everything else** (dotfiles, config, docs, prose, small mechanical edits) — no subagents. Re-read the diff yourself as a sanity check for typos, syntax validity, and unintended changes, then commit.
+  - When in doubt, or when a config change carries real blast radius (CI, deploy, permissions, secrets), use the full three-reviewer pass.
 
 ## Working Directories
 
