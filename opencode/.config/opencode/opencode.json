@@ -13,23 +13,23 @@
       "models": {
         "qwen3-coder-next-q4": {
           "name": "Qwen3 Coder Next",
-          "contextWindow": 131072
+          "limit": { "context": 131072, "output": 8192 }
         },
         "qwen3.8-27b-q4": {
           "name": "Qwen3.8 27B",
-          "contextWindow": 131072
+          "limit": { "context": 131072, "output": 8192 }
         },
         "qwen3.6-35b-q4": {
           "name": "Qwen3.6 35B A3B",
-          "contextWindow": 131072
+          "limit": { "context": 131072, "output": 8192 }
         },
         "gemma-4-26b-a4b-q4": {
           "name": "Gemma 4 26B A4B",
-          "contextWindow": 32768
+          "limit": { "context": 32768, "output": 8192 }
         },
         "gemma-4-31b-q4": {
           "name": "Gemma 4 31B",
-          "contextWindow": 32768
+          "limit": { "context": 32768, "output": 8192 }
         }
       }
     },
@@ -42,11 +42,11 @@
       "models": {
         "gemma-4-e4b": {
           "name": "Gemma 4 E4B",
-          "contextWindow": 16384
+          "limit": { "context": 16384, "output": 4096 }
         },
         "qwen3.5-4b": {
           "name": "Qwen 3.5 4B",
-          "contextWindow": 16384
+          "limit": { "context": 16384, "output": 4096 }
         }
       }
     }
