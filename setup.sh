@@ -14,6 +14,7 @@ base=(
     p10k
     git
     claude
+    ccstatusline
     opencode
     helix
     alacritty

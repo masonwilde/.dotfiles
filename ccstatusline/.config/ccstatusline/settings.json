@@ -1,0 +1,83 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "1",
+        "type": "model",
+        "color": "cyan"
+      },
+      {
+        "id": "2",
+        "type": "separator"
+      },
+      {
+        "id": "3",
+        "type": "context-length",
+        "color": "brightBlack"
+      },
+      {
+        "id": "4",
+        "type": "separator"
+      },
+      {
+        "id": "5",
+        "type": "git-branch",
+        "color": "magenta"
+      },
+      {
+        "id": "6",
+        "type": "separator"
+      },
+      {
+        "id": "7",
+        "type": "git-changes",
+        "color": "yellow"
+      }
+    ],
+    [
+      {
+        "id": "001a6f0c-e418-42e9-8b49-13f9e1f584a5",
+        "type": "session-usage"
+      },
+      {
+        "id": "a72a4789-fe6f-4a95-bae8-02b4a42c2639",
+        "type": "separator"
+      },
+      {
+        "id": "69daefba-a845-4728-87bc-a5e88df115fa",
+        "type": "reset-timer"
+      },
+      {
+        "id": "c3e8a264-2309-4109-abb3-467b20859031",
+        "type": "separator"
+      },
+      {
+        "id": "20d7d070-6cce-4c82-aa05-378ff1cb0cc9",
+        "type": "fable-weekly-usage"
+      }
+    ],
+    []
+  ],
+  "flexMode": "full-minus-40",
+  "compactThreshold": 60,
+  "colorLevel": 2,
+  "defaultPaddingSide": "both",
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "gitCacheTtlSeconds": 5,
+  "minimalistMode": false,
+  "powerline": {
+    "enabled": false,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [],
+    "endCaps": [],
+    "autoAlign": false,
+    "continueThemeAcrossLines": false
+  }
+}
