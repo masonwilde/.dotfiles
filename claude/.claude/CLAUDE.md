@@ -14,9 +14,7 @@ dotfiles repo, so each machine can define its own; a missing file is ignored.
 ## Git Usage
 
 - When planning or implementing, always make commits at logical steps
-- Make ALL commits as a single descriptive line followed by a list of changes in the commit.
-  - Keep it concise: a short subject line and a few terse bullets covering only what adds information. Do not pad.
-  - Do NOT enumerate tests in the commit body; passing tests are assumed.
+- Make ALL commits a single descriptive line. No body, no bullets.
   - DO NOT append anything else like Claude authorship to the commit.
 - DO NOT push work. Anything modifying the remote will be done manually by your partner.
 - Scale pre-commit review to the change:
