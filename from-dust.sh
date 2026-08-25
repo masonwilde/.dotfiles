@@ -13,6 +13,9 @@ echo "==> Installing external tools..."
 echo "==> Stowing dotfiles..."
 "$DOTFILES_DIR/setup.sh"
 
+echo "==> Installing tmux plugins..."
+"$DOTFILES_DIR/install_tmux_plugins.sh"
+
 echo "==> Configuring git hooks..."
 git config core.hooksPath "$DOTFILES_DIR/hooks"
 
