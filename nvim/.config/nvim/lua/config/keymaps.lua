@@ -1,16 +1,12 @@
+-- Leader groups are defined by the plugin that owns them:
+--   <leader>a  Claude       <leader>c  Code        <leader>e  Explorer
+--   <leader>f  Find         <leader>g  Git         <leader>n  Notifications
+
 vim.g.mapleader = " "
 
 local function map(mode, lhs, rhs, desc)
 	vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc })
 end
-
--- Neo-tree
-map("n", "<leader>t", "<CMD>Neotree toggle<CR>", "Neotree toggle")
-map("n", "<leader>r", "<CMD>Neotree focus<CR>", "Neotree focus")
-
--- Splits
-map("n", "<leader>o", "<CMD>vsplit<CR>", "Vertical split")
-map("n", "<leader>p", "<CMD>split<CR>", "Horizontal split")
 
 -- Window navigation
 map("n", "<C-h>", "<C-w>h")
