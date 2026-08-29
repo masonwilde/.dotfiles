@@ -1,5 +1,9 @@
 vim.pack.add({ { src = "https://github.com/coder/claudecode.nvim" } })
 
+-- config.plugins is loaded by alphabetical glob, so snacks would otherwise come
+-- second and the terminal provider below would silently fall back to native.
+require("config.plugins.snacks")
+
 require("claudecode").setup({
 	terminal = {
 		provider = "snacks",
