@@ -24,6 +24,9 @@ require("mason-tool-installer").setup({
 		-- Formatters
 		"stylua",
 		"prettier",
+
+		-- Required by nvim-treesitter to build parsers
+		"tree-sitter-cli",
 	},
 	auto_update = false,
 	run_on_start = true,

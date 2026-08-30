@@ -33,5 +33,6 @@ require("snacks").setup({
 	words = { enabled = true },
 })
 
-vim.keymap.set("n", "<leader>n", function() Snacks.notifier.show_history() end, { desc = "Notification History" })
-vim.keymap.set("n", "<leader>nd", function() Snacks.notifier.hide() end, { desc = "Dismiss Notifications" })
+vim.keymap.set("n", "<leader>e", function() Snacks.explorer() end, { desc = "Explorer" })
+vim.keymap.set("n", "<leader>nh", function() Snacks.notifier.show_history() end, { desc = "Notification history" })
+vim.keymap.set("n", "<leader>nd", function() Snacks.notifier.hide() end, { desc = "Dismiss notifications" })

@@ -1,6 +1,9 @@
 lazy-lock.json
 .env
 .workrc
+
+# TPM clones plugins here; ~/.config/tmux is a folded stow symlink into this repo
+tmux/.config/tmux/plugins/
 /.claude
 claude/.claude/*
 !claude/.claude/CLAUDE.md

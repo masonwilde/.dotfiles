@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# make sure we have pulled in and updated any submodules
-git submodule init
-git submodule update
-
 # what directories should be installable by all users including the root user
 base=(
     bash
@@ -14,6 +10,7 @@ base=(
     p10k
     git
     claude
+    ccstatusline
     opencode
     helix
     alacritty
