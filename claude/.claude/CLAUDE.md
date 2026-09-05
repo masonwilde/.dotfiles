@@ -32,6 +32,7 @@ dotfiles repo, so each machine can define its own; a missing file is ignored.
 
 - `<project-root>/.tmp/` (the dir the session is based in) is for planning/scratch docs ONLY — design docs, implementation plans, notes. These are NEVER committed; `.tmp/` is globally gitignored.
 - Actual repos and code live at their real locations (e.g. `~/Code/<repo>/`) and are committed there normally.
+- Within a repo, COMMITTED working artifacts (DESIGN.md, PLAN.md, brainstorms) go in `afx/`; `docs/` is reserved for actual project documentation.
 
 ## Tooling
 
