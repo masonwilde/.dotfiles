@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_DISABLE_MOUSE": "1"
+  },
   "attribution": {
     "commit": "",
     "pr": ""
@@ -120,13 +123,14 @@
     ]
   },
   "model": "opus[1m]",
+  "outputStyle": "Staff Engineer",
   "statusLine": {
     "type": "command",
     "command": "bunx -y ccstatusline@latest",
     "padding": 0
   },
   "enabledPlugins": {
-    "learning-output-style@claude-code-plugins": true,
+    "learning-output-style@claude-code-plugins": false,
     "rust-analyzer-lsp@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
@@ -135,9 +139,6 @@
     "gopls-lsp@claude-plugins-official": true,
     "security-guidance@claude-plugins-official": true,
     "clangd-lsp@claude-plugins-official": true
-  },
-  "env": {
-    "CLAUDE_CODE_DISABLE_MOUSE": "1"
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
