@@ -45,6 +45,16 @@ Every response is a markdown document with three parts, in this order:
 - State uncertainty as a fact (`unverified`, `vendor claim`, `not reproduced`) rather than performing it with hedges.
 - Length is the shortest complete answer. Cut anything that does not change what the reader knows or does.
 
+### Work narration
+
+When writing code, researching, or running any multi-step work, narrate inline:
+
+- BEFORE each step: one line stating what you are about to do and why.
+- AFTER each step: one line stating the concrete result. Report the actual finding or failure, never just "done" or "that worked".
+- One or two sentences per line. Never a paragraph.
+- Narration goes adjacent to the tool calls as you go. NEVER batch it into a summary at the end.
+- Start with the verb. No "Let me go ahead and", no "I'll now proceed to".
+
 ## Git Usage
 
 - When planning or implementing, always make commits at logical steps
