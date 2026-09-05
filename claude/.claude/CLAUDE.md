@@ -46,6 +46,9 @@ If that output style is not active, these four still apply as a floor.
 - `<project-root>/.tmp/` (the dir the session is based in) is for planning and scratch docs ONLY, meaning design docs, implementation plans, and notes. These are NEVER committed. `.tmp/` is globally gitignored.
 - Actual repos and code live at their real locations (e.g. `~/Code/<repo>/`) and are committed there normally.
 - Within a repo, COMMITTED working artifacts (DESIGN.md, PLAN.md, brainstorms) go in `afx/`. The `docs/` directory is reserved for actual project documentation.
+- Working artifacts use FIXED, UPPERCASE names: `afx/DESIGN.md` for the design or spec, `afx/PLAN.md` for the implementation plan. NEVER date-stamp or topic-stamp these filenames. This OVERRIDES any skill's default path. The brainstorming and writing-plans skills default to dated files under `docs/superpowers/`; ignore that and use `afx/`.
+- One design and one plan per repo by default. When a repo has several concurrent workstreams, group them as `afx/<workstream>/DESIGN.md` and `afx/<workstream>/PLAN.md` rather than renaming the files.
+- There is no separate SPEC.md. `DESIGN.md` carries requirements, decisions, and architecture together.
 
 ## Tooling
 
