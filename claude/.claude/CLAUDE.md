@@ -45,10 +45,11 @@ If that output style is not active, these four still apply as a floor.
 
 - `<project-root>/.tmp/` (the dir the session is based in) is for planning and scratch docs ONLY, meaning design docs, implementation plans, and notes. These are NEVER committed. `.tmp/` is globally gitignored.
 - Actual repos and code live at their real locations (e.g. `~/Code/<repo>/`) and are committed there normally.
-- Within a repo, COMMITTED working artifacts (DESIGN.md, PLAN.md, brainstorms) go in `afx/`. The `docs/` directory is reserved for actual project documentation.
-- Working artifacts use FIXED, UPPERCASE names: `afx/DESIGN.md` for the design or spec, `afx/PLAN.md` for the implementation plan. NEVER date-stamp or topic-stamp these filenames. This OVERRIDES any skill's default path. The brainstorming and writing-plans skills default to dated files under `docs/superpowers/`; ignore that and use `afx/`.
-- One design and one plan per repo by default. When a repo has several concurrent workstreams, group them as `afx/<workstream>/DESIGN.md` and `afx/<workstream>/PLAN.md` rather than renaming the files.
-- There is no separate SPEC.md. `DESIGN.md` carries requirements, decisions, and architecture together.
+- Within a repo, COMMITTED working artifacts (SPEC.md, DESIGN.md, PLAN.md, brainstorms) go in `afx/`. The `docs/` directory is reserved for actual project documentation.
+- Working artifacts use FIXED, UPPERCASE names. `afx/SPEC.md` for what the work must do, `afx/DESIGN.md` for architecture and rationale, `afx/PLAN.md` for the implementation steps. NEVER date-stamp or topic-stamp these filenames. This OVERRIDES any skill's default path. The brainstorming and writing-plans skills default to dated files under `docs/superpowers/`; ignore that and use `afx/`.
+- The three flow SPEC to DESIGN to PLAN. SPEC states scope, requirements, and acceptance criteria, meaning what must be true when the work is done. DESIGN records architecture, decisions, and the reasoning behind them, including options rejected and why. PLAN turns both into ordered, checkable implementation steps. Each cross-references the other two rather than restating them.
+- Not every workstream needs all three. A small or mechanical change may need only a PLAN. Write the documents that carry weight and skip the ones that would only pad.
+- One set per repo by default. When a repo has several concurrent workstreams, group them as `afx/<workstream>/SPEC.md`, `afx/<workstream>/DESIGN.md` and `afx/<workstream>/PLAN.md` rather than renaming the files.
 
 ## Tooling
 
