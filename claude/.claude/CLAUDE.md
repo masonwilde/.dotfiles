@@ -32,14 +32,30 @@ If that output style is not active, these four still apply as a floor.
 - Make ALL commits a single descriptive line. No body, no bullets.
   - DO NOT append anything else like Claude authorship to the commit.
 - DO NOT push work. Anything modifying the remote will be done manually by your partner.
+- **Reviewers read. They never run.** Use the `code-reviewer` and `domain-reviewer` agents, which
+  have no shell for exactly that reason. Running the code is what the test suite is for, and a
+  measurement taken in a subagent's scratch directory evaporates while a test stays. A reviewer
+  asking to measure something has found a missing test: write the test.
 - Scale pre-commit review to the change.
-  - **Code changes** (application/library source, tests, build logic). Before EVERY commit, kick off three reviewer subagents in parallel and address their findings first.
-    1. **Generalist staff engineer.** Correctness, efficiency, and architecture.
-    2. **Domain expert.** The language, framework, protocol, or problem domain of the change.
-    3. **Quality expert.** Whether the code is self-documenting, covering naming, function size, control flow clarity, comment quality, and cleanliness. Flag anything a reader would need explained to them.
-     Pick reviewer models via the Subagents ladder. Sonnet for routine diffs, opus for complex ones.
-  - **Everything else** (dotfiles, config, docs, prose, small mechanical edits). No subagents. Re-read the diff yourself as a sanity check for typos, syntax validity, and unintended changes, then commit.
-  - When in doubt, or when a config change carries real blast radius (CI, deploy, permissions, secrets), use the full three-reviewer pass.
+  - **Code changes** (application/library source, tests, build logic). Dispatch `code-reviewer`,
+    and `domain-reviewer` as well when the change implements a paper, standard, protocol or
+    anything else with an outside source of truth. Address the findings before committing.
+  - Write the diff to a file first and give the reviewer that path, plus the paths of any spec or
+    design documents. They cannot run `git` for themselves.
+  - Review a series of related commits every second one rather than every one, unless a commit is
+    risky on its own. Iterate with tests and renders in between.
+  - **Everything else** (dotfiles, config, docs, prose, small mechanical edits). No subagents.
+    Re-read the diff yourself as a sanity check for typos, syntax validity, and unintended changes,
+    then commit.
+  - When a change carries real blast radius (CI, deploy, permissions, secrets), review it however
+    small it looks.
+- Some findings recur because they are my own failure modes rather than discoveries. Check these
+  before dispatching anyone, every time.
+  - A parallel helper taking a work estimate: is it the **total** work, including any per-item
+    factor, rather than a chunk size? A count below the threading threshold silently runs serial.
+  - Every new test: would it fail if the thing its name claims were inverted? If not, rewrite it.
+  - Every doc comment stating a number, bound, rate or complexity: is it measured, or guessed?
+  - Small angles: never `acos` of an `f32` dot product. Near one it reads as exactly zero.
 
 ## Working Directories
 
