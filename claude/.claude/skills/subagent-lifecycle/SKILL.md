@@ -22,6 +22,10 @@ after they were done.
   foresee (a command past 15 minutes, a dependency that will not build, a test that will not
   pass after two attempts).
 - The brief says the lead runs the review, so the agent must not spawn reviewers of its own.
+- The brief tells the agent that the one-line description on every tool call is what the user
+  sees as its live status, so each must say the step and the file in plain words ("Write the
+  failing press tests in tests/hold.rs", "Run the workspace tests after the release fix"), never
+  a generic "debugging" or "running command". The Agent call's own description names the task.
 - Builds run in the foreground with an explicit timeout. Never wait on a background build.
 - In a worktree, share the main checkout's build directory instead of copying it: every cargo
   command runs with `CARGO_TARGET_DIR` set to the main checkout's `target`. Copying it doubles
