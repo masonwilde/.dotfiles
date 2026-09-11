@@ -27,10 +27,13 @@ after they were done.
   failing press tests in tests/hold.rs", "Run the workspace tests after the release fix"), never
   a generic "debugging" or "running command". The Agent call's own description names the task.
 - Builds run in the foreground with an explicit timeout. Never wait on a background build.
-- In a worktree, share the main checkout's build directory instead of copying it: every cargo
-  command runs with `CARGO_TARGET_DIR` set to the main checkout's `target`. Copying it doubles
-  hundreds of gigabytes per agent; cargo's own lock keeps a shared directory safe when only one
-  worktree is active. Use the dev profile unless the task measures performance.
+- In a worktree, never copy the main checkout's build directory and never share it with a
+  second concurrent worktree: two worktrees building different versions of the same crate into
+  one `target` produced a link against the other's half-edited code. Each worktree builds into
+  its own directory under the main one, `CARGO_TARGET_DIR=<main>/target/worktrees/<name>`,
+  which the lead deletes with the worktree. Keep dependency debug info trimmed so a fresh one is
+  cheap (28 GB and a four minute cold build on bodtalk). Use the dev profile unless the task
+  measures performance.
 
 ## While it runs
 
