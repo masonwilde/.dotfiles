@@ -10,4 +10,5 @@ claude/.claude/*
 !claude/.claude/settings.json
 !claude/.claude/agents/
 !claude/.claude/hooks/
+!claude/.claude/skills/
 __pycache__/
