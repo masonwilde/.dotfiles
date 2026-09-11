@@ -36,19 +36,31 @@ If that output style is not active, these four still apply as a floor.
   have no shell for exactly that reason. Running the code is what the test suite is for, and a
   measurement taken in a subagent's scratch directory evaporates while a test stays. A reviewer
   asking to measure something has found a missing test: write the test.
-- Scale pre-commit review to the change.
+- Scale review to the change.
   - **Code changes** (application/library source, tests, build logic). Dispatch `code-reviewer`,
     and `domain-reviewer` as well when the change implements a paper, standard, protocol or
-    anything else with an outside source of truth. Address the findings before committing.
+    anything else with an outside source of truth. Pick the reviewer model by the task's size,
+    per the Subagents section. A mechanical task gets haiku, a routine one sonnet, a tricky one
+    opus.
   - Write the diff to a file first and give the reviewer that path, plus the paths of any spec or
     design documents. They cannot run `git` for themselves.
-  - Review a series of related commits every second one rather than every one, unless a commit is
-    risky on its own. Iterate with tests and renders in between.
   - **Everything else** (dotfiles, config, docs, prose, small mechanical edits). No subagents.
     Re-read the diff yourself as a sanity check for typos, syntax validity, and unintended changes,
     then commit.
   - When a change carries real blast radius (CI, deploy, permissions, secrets), review it however
     small it looks.
+- **Pipelined review loop.** When executing a plan task by task, review runs behind the work, not
+  in front of it. For each task:
+  1. Implement inline. Make the tests pass. For visual work, grab a screenshot or render inline and
+     check it before calling the task done.
+  2. Commit.
+  3. Dispatch the reviewers in the background on that commit's diff, then start the next task
+     inline.
+  4. When the reviewers return with actionable findings, stop the inline work, `git stash` it,
+     address the findings, `git commit --amend` the reviewed commit, then `git stash pop` and
+     resolve any conflicts before continuing.
+  5. Never work more than one task ahead of review, and never have more than one set of reviewers
+     in flight. If the next task finishes before the reviewers return, wait for them.
 - Some findings recur because they are my own failure modes rather than discoveries. Check these
   before dispatching anyone, every time.
   - A parallel helper taking a work estimate: is it the **total** work, including any per-item
