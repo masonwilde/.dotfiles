@@ -23,8 +23,10 @@ after they were done.
   pass after two attempts).
 - The brief says the lead runs the review, so the agent must not spawn reviewers of its own.
 - Builds run in the foreground with an explicit timeout. Never wait on a background build.
-- In a worktree, seed the build directory from the main checkout before the first build, and
-  use the dev profile unless the task measures performance.
+- In a worktree, share the main checkout's build directory instead of copying it: every cargo
+  command runs with `CARGO_TARGET_DIR` set to the main checkout's `target`. Copying it doubles
+  hundreds of gigabytes per agent; cargo's own lock keeps a shared directory safe when only one
+  worktree is active. Use the dev profile unless the task measures performance.
 
 ## While it runs
 
