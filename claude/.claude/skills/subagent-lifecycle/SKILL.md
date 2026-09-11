@@ -29,10 +29,13 @@ after they were done.
 ## While it runs
 
 - Keep a 10 minute stall monitor armed whenever any agent is in flight. It reports each
-  running worktree's HEAD, uncommitted file count, and whether a cargo or rustc process is
-  alive.
-- Two consecutive reports with no change is a stall. Send one wrap-up message. If the next
-  report is still flat, stop the agent and launch a fresh one with a tighter brief.
+  running worktree's HEAD, the size of the uncommitted diff in lines, the time of the newest
+  source edit, and whether a cargo or rustc process is alive. A count of changed files alone
+  reads steady work on the same files as a stall.
+- Two consecutive reports with no change in any of those is a stall. Send one wrap-up
+  message. Before stopping an agent after a further flat report, check the newest edit time
+  directly; an edit in the last few minutes means it is working, not stalled. Only then stop
+  it and launch a fresh one with a tighter brief.
 - A running agent gets messages only to wrap up. Never assign it new work.
 
 ## When it reports
