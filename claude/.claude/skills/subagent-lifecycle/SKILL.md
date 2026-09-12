@@ -1,6 +1,6 @@
 ---
 name: subagent-lifecycle
-description: Use whenever launching, watching, or finishing a subagent. One agent per discrete task with a start and end condition, a 10 minute stall monitor while it runs, stopped when it reports, and a fresh agent for anything that follows.
+description: Use whenever launching, watching, or finishing a subagent. One agent per discrete task with a start and end condition, a 5 minute stall monitor while it runs, stopped when it reports, and a fresh agent for anything that follows.
 ---
 
 # Subagent lifecycle
@@ -37,7 +37,7 @@ after they were done.
 
 ## While it runs
 
-- Keep a 10 minute stall monitor armed whenever any agent is in flight. It reports each
+- Keep a 5 minute stall monitor armed whenever any agent is in flight. It reports each
   running worktree's HEAD, the size of the uncommitted diff in lines, the time of the newest
   source edit, and whether a cargo or rustc process is alive. A count of changed files alone
   reads steady work on the same files as a stall.
